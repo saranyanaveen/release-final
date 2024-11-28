@@ -48,7 +48,7 @@ version-resolver:
   default: patch
 
 template: |
-  ## 🚀 Release Notes for $RESOLVED_VERSION
+  🚀 Release Notes for $RESOLVED_VERSION
 
   ## ✨ Features
   {{#categories.Features}}
