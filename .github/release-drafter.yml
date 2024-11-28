@@ -1,55 +1,56 @@
 name-template: "v$RESOLVED_VERSION"
 tag-template: "v$RESOLVED_VERSION"
 categories:
-  - title: 🚀 Features
+  - title: ✨ Features
     labels:
-      - feature
-      - enhancement
-      - new-feature
-  - title: 🐛 Bug Fixes
-    labels:
-      - fix
-      - bugfix
-      - bug
-      - defect
-  - title: 🔧 Maintenance
-    labels:
-      - chore
-      - refactor
-      - maintenance
-  - title: 📖 Documentation Updates
-    labels:
-      - documentation
-      - docs
-  - title: 🌟 Improvements
-    labels:
-      - improvement
-      - optimization
-change-template: '- $TITLE by @$AUTHOR (#$NUMBER)'
-version-resolver:
-  major:
-    labels:
-      - major
-      - breaking-change
-  minor:
-    labels:
-      - minor
-      - feature
       - feat
-      - enhancement
-  patch:
+      - feature
+  - title: 🐞 Bug Fixes
     labels:
-      - patch
-      - fix
       - bug
-      - chore
-      - maintenance
-  default: patch
+  - title: 📄 Other Changes
+    labels:
+      - other
+      - documentation
+change-template: "- {{body}}"
+no-changes-template: No significant changes in this release.
 template: |
-  ## 🚀 Release Notes
+  # 🚀 Release Notes for {{version}}
 
-  ## What's Changed
-  $CHANGES
+  ## ✨ Features
+  {{#categories.Features}}
+  {{#pullRequests}}
+  {{#labels}}
+  {{#is "feat"}}
+  - {{title}} (#{{number}}) by @{{author}}
+  {{/is}}
+  {{/labels}}
+  {{/pullRequests}}
+  {{/categories.Features}}
 
-  ## Contributors
-  $CONTRIBUTORS
+  ## 🐞 Bug Fixes
+  {{#categories.Bug Fixes}}
+  {{#pullRequests}}
+  {{#labels}}
+  {{#is "bug"}}
+  - {{title}} (#{{number}}) by @{{author}}
+  {{/is}}
+  {{/labels}}
+  {{/pullRequests}}
+  {{/categories.Bug Fixes}}
+
+  ## 📄 Other Changes
+  {{#categories.Other Changes}}
+  {{#pullRequests}}
+  {{#labels}}
+  {{#is "other"}}
+  - {{title}} (#{{number}}) by @{{author}}
+  {{/is}}
+  {{/labels}}
+  {{/pullRequests}}
+  {{/categories.Other Changes}}
+
+  ## 🏅 Contributors
+  {{#contributors}}
+  - @{{username}}
+  {{/contributors}}
