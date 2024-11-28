@@ -1,28 +1,61 @@
-name-template: Release Notes for "v$RESOLVED_VERSION"
+name-template: "v$RESOLVED_VERSION"
 tag-template: "v$RESOLVED_VERSION"
+
 categories:
-  - title: ✨ Features
+  - title: "✨ Features"
     labels:
-      - feat
       - feature
-  - title: 🐞 Bug Fixes
+      - enhancement
+      - new-feature
+      - feat
+  - title: "🐞 Bug Fixes"
     labels:
+      - fix
+      - bugfix
       - bug
-  - title: 📄 Other Changes
+      - defect
+  - title: "📄 Other Changes"
     labels:
       - other
       - documentation
-change-template: "- {{body}}"
-no-changes-template: No significant changes in this release.
+      - docs
+  - title: "🔧 Maintenance"
+    labels:
+      - chore
+      - refactor
+      - maintenance
+
+change-template: '- $TITLE by @$AUTHOR (#$NUMBER): $BODY'
+
+version-resolver:
+  major:
+    labels:
+      - major
+      - breaking-change
+  minor:
+    labels:
+      - minor
+      - feature
+      - feat
+      - enhancement
+  patch:
+    labels:
+      - patch
+      - fix
+      - bug
+      - chore
+      - maintenance
+  default: patch
+
 template: |
-  # 🚀 Release Notes for {{version}}
+  ## 🚀 Release Notes for $RESOLVED_VERSION
 
   ## ✨ Features
   {{#categories.Features}}
   {{#pullRequests}}
   {{#labels}}
-  {{#is "feat"}}
-  - {{title}} (#{{number}}) by @{{author}}
+  {{#is "feature"}}
+  - $TITLE (#$NUMBER) by @$AUTHOR: $BODY
   {{/is}}
   {{/labels}}
   {{/pullRequests}}
@@ -33,7 +66,7 @@ template: |
   {{#pullRequests}}
   {{#labels}}
   {{#is "bug"}}
-  - {{title}} (#{{number}}) by @{{author}}
+  - $TITLE (#$NUMBER) by @$AUTHOR: $BODY
   {{/is}}
   {{/labels}}
   {{/pullRequests}}
@@ -44,14 +77,24 @@ template: |
   {{#pullRequests}}
   {{#labels}}
   {{#is "other"}}
-  - {{title}} (#{{number}}) by @{{author}}
+  - $TITLE (#$NUMBER) by @$AUTHOR: $BODY
   {{/is}}
   {{/labels}}
   {{/pullRequests}}
   {{/categories.Other Changes}}
 
+  ## 🔧 Maintenance
+  {{#categories.Maintenance}}
+  {{#pullRequests}}
+  {{#labels}}
+  {{#is "maintenance"}}
+  - $TITLE (#$NUMBER) by @$AUTHOR: $BODY
+  {{/is}}
+  {{/labels}}
+  {{/pullRequests}}
+  {{/categories.Maintenance}}
+
   ## 🏅 Contributors
   {{#contributors}}
-  - @{{username}}
+  - @$USERNAME
   {{/contributors}}
-
