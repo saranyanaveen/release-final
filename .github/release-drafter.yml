@@ -1,28 +1,29 @@
-name-template: Release Notes for "v$RESOLVED_VERSION"
+name-template: "Release Notes for v$RESOLVED_VERSION"
 tag-template: "v$RESOLVED_VERSION"
 categories:
-  - title: ✨ Features
+  - title: "✨ Features"
     labels:
-      - feat
-      - feature
-  - title: 🐞 Bug Fixes
+      - "feat"
+      - "feature"
+  - title: "🐞 Bug Fixes"
     labels:
-      - bug
-  - title: 📄 Other Changes
+      - "bug"
+  - title: "📄 Other Changes"
     labels:
-      - other
-      - documentation
-change-template: "- {{body}}"
-no-changes-template: No significant changes in this release.
+      - "other"
+      - "documentation"
+change-template: "- {{body}}"                     # Use the PR body (description) as the message
+no-changes-template: "No significant changes in this release."
+
 template: |
-  # 🚀 Release Notes for {{version}}
+  # 🚀 Release Notes for "v$RESOLVED_VERSION"
 
   ## ✨ Features
   {{#categories.Features}}
   {{#pullRequests}}
   {{#labels}}
   {{#is "feat"}}
-  - {{title}} (#{{number}}) by @{{author}}
+  - {{body}} (#{{number}}) by @{{author}}
   {{/is}}
   {{/labels}}
   {{/pullRequests}}
@@ -33,7 +34,7 @@ template: |
   {{#pullRequests}}
   {{#labels}}
   {{#is "bug"}}
-  - {{title}} (#{{number}}) by @{{author}}
+  - {{body}} (#{{number}}) by @{{author}}
   {{/is}}
   {{/labels}}
   {{/pullRequests}}
@@ -44,7 +45,7 @@ template: |
   {{#pullRequests}}
   {{#labels}}
   {{#is "other"}}
-  - {{title}} (#{{number}}) by @{{author}}
+  - {{body}} (#{{number}}) by @{{author}}
   {{/is}}
   {{/labels}}
   {{/pullRequests}}
@@ -54,4 +55,3 @@ template: |
   {{#contributors}}
   - @{{username}}
   {{/contributors}}
-
