@@ -16,7 +16,7 @@ change-template: "- {{body}}"                     # Use the PR body (description
 no-changes-template: "No significant changes in this release."
 
 template: |
-  # 🚀 Release Notes for {{version}}
+  # 🚀 Release Notes for "v$RESOLVED_VERSION"
 
   ## ✨ Features
   {{#categories.Features}}
