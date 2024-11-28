@@ -25,7 +25,7 @@ categories:
     labels:
       - improvement
       - optimization
-change-template: '- $TITLE by @$AUTHOR (#$NUMBER)': $BODY'
+change-template: '- $TITLE by @$AUTHOR (#$NUMBER)'
 version-resolver:
   major:
     labels:
